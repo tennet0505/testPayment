@@ -21,6 +21,10 @@
 		06BB02DE288AF01200C61D4B /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06BB02DD288AF01200C61D4B /* MainViewModel.swift */; };
 		06BB02E1288AF04700C61D4B /* ApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06BB02E0288AF04700C61D4B /* ApiService.swift */; };
 		06BB02E4288AF09D00C61D4B /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06BB02E3288AF09D00C61D4B /* Storage.swift */; };
+		06BB02E6288B0D4900C61D4B /* PaymentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06BB02E5288B0D4900C61D4B /* PaymentViewController.swift */; };
+		06BB02E9288B0F0000C61D4B /* PaymentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06BB02E8288B0F0000C61D4B /* PaymentViewModel.swift */; };
+		06BB02EC288B1D8000C61D4B /* Helpers+Extentions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06BB02EB288B1D8000C61D4B /* Helpers+Extentions.swift */; };
+		06BB02EE288B241500C61D4B /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06BB02ED288B241500C61D4B /* DetailViewController.swift */; };
 		08110C64614B125A8C659710 /* Pods_BunqTestPaymentTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8A603C9C26D2D1A0D0B1CFB /* Pods_BunqTestPaymentTests.framework */; };
 		5E5442E76DC72C26A2EA5B3B /* Pods_BunqTestPayment.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6981DB3B0557443D18464FA0 /* Pods_BunqTestPayment.framework */; };
 		98AF3D5774F5F0B6F6F768D4 /* Pods_BunqTestPayment_BunqTestPaymentUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F31FF3279660326559B7398 /* Pods_BunqTestPayment_BunqTestPaymentUITests.framework */; };
@@ -62,6 +66,10 @@
 		06BB02DD288AF01200C61D4B /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
 		06BB02E0288AF04700C61D4B /* ApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiService.swift; sourceTree = "<group>"; };
 		06BB02E3288AF09D00C61D4B /* Storage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
+		06BB02E5288B0D4900C61D4B /* PaymentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentViewController.swift; sourceTree = "<group>"; };
+		06BB02E8288B0F0000C61D4B /* PaymentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentViewModel.swift; sourceTree = "<group>"; };
+		06BB02EB288B1D8000C61D4B /* Helpers+Extentions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Helpers+Extentions.swift"; sourceTree = "<group>"; };
+		06BB02ED288B241500C61D4B /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		0F31FF3279660326559B7398 /* Pods_BunqTestPayment_BunqTestPaymentUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BunqTestPayment_BunqTestPaymentUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3FF6AE49011EE1E41481B59B /* Pods-BunqTestPayment-BunqTestPaymentUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BunqTestPayment-BunqTestPaymentUITests.release.xcconfig"; path = "Target Support Files/Pods-BunqTestPayment-BunqTestPaymentUITests/Pods-BunqTestPayment-BunqTestPaymentUITests.release.xcconfig"; sourceTree = "<group>"; };
 		4C8C48D63AD7557E4C9901A1 /* Pods-BunqTestPayment.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BunqTestPayment.release.xcconfig"; path = "Target Support Files/Pods-BunqTestPayment/Pods-BunqTestPayment.release.xcconfig"; sourceTree = "<group>"; };
@@ -126,10 +134,12 @@
 		06BB02A5288AA94B00C61D4B /* BunqTestPayment */ = {
 			isa = PBXGroup;
 			children = (
+				06BB02EA288B1D6E00C61D4B /* Helpers */,
 				06BB02E2288AF08200C61D4B /* StorageHelper */,
 				06BB02DF288AF02900C61D4B /* ApiService */,
 				06BB02DA288AEF2100C61D4B /* Models */,
 				06BB02D9288AEF1200C61D4B /* MainViewModel */,
+				06BB02E7288B0EE900C61D4B /* PayViewModel */,
 				06BB02D8288AEF0700C61D4B /* Views */,
 				06BB02A6288AA94B00C61D4B /* AppDelegate.swift */,
 				06BB02A8288AA94B00C61D4B /* SceneDelegate.swift */,
@@ -163,6 +173,8 @@
 			isa = PBXGroup;
 			children = (
 				06BB02AA288AA94B00C61D4B /* ViewController.swift */,
+				06BB02E5288B0D4900C61D4B /* PaymentViewController.swift */,
+				06BB02ED288B241500C61D4B /* DetailViewController.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -199,6 +211,22 @@
 			path = StorageHelper;
 			sourceTree = "<group>";
 		};
+		06BB02E7288B0EE900C61D4B /* PayViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				06BB02E8288B0F0000C61D4B /* PaymentViewModel.swift */,
+			);
+			path = PayViewModel;
+			sourceTree = "<group>";
+		};
+		06BB02EA288B1D6E00C61D4B /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				06BB02EB288B1D8000C61D4B /* Helpers+Extentions.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
 		2E8CCE5C4C599846882A33B8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -219,7 +247,6 @@
 				EE3722B5B473001495C9C9D7 /* Pods-BunqTestPaymentTests.debug.xcconfig */,
 				8781CEEB40BC10307FA20AF1 /* Pods-BunqTestPaymentTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -234,6 +261,7 @@
 				06BB029F288AA94B00C61D4B /* Sources */,
 				06BB02A0288AA94B00C61D4B /* Frameworks */,
 				06BB02A1288AA94B00C61D4B /* Resources */,
+				58E7D7EDF608EA7E9192C8B5 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -271,6 +299,7 @@
 				06BB02BF288AA94D00C61D4B /* Sources */,
 				06BB02C0288AA94D00C61D4B /* Frameworks */,
 				06BB02C1288AA94D00C61D4B /* Resources */,
+				6C37130FB2ECC6E1F39DC5C2 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -397,6 +426,40 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		58E7D7EDF608EA7E9192C8B5 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-BunqTestPayment/Pods-BunqTestPayment-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-BunqTestPayment/Pods-BunqTestPayment-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-BunqTestPayment/Pods-BunqTestPayment-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		6C37130FB2ECC6E1F39DC5C2 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-BunqTestPayment-BunqTestPaymentUITests/Pods-BunqTestPayment-BunqTestPaymentUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-BunqTestPayment-BunqTestPaymentUITests/Pods-BunqTestPayment-BunqTestPaymentUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-BunqTestPayment-BunqTestPaymentUITests/Pods-BunqTestPayment-BunqTestPaymentUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		E5B88A47089CBB5047CFF827 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -427,12 +490,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				06BB02D7288AAD8E00C61D4B /* CardsCollectionViewCell.swift in Sources */,
+				06BB02E9288B0F0000C61D4B /* PaymentViewModel.swift in Sources */,
 				06BB02AB288AA94B00C61D4B /* ViewController.swift in Sources */,
+				06BB02EE288B241500C61D4B /* DetailViewController.swift in Sources */,
 				06BB02A7288AA94B00C61D4B /* AppDelegate.swift in Sources */,
+				06BB02EC288B1D8000C61D4B /* Helpers+Extentions.swift in Sources */,
 				06BB02A9288AA94B00C61D4B /* SceneDelegate.swift in Sources */,
 				06BB02DC288AEF9F00C61D4B /* Models.swift in Sources */,
 				06BB02E4288AF09D00C61D4B /* Storage.swift in Sources */,
 				06BB02E1288AF04700C61D4B /* ApiService.swift in Sources */,
+				06BB02E6288B0D4900C61D4B /* PaymentViewController.swift in Sources */,
 				06BB02DE288AF01200C61D4B /* MainViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

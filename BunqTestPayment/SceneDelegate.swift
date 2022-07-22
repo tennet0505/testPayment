@@ -19,8 +19,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let _ = (scene as? UIWindowScene) else { return }
         
         //mock Data
-        let payments: [Payment] = [Payment(contracter: "NL", amount: "20", datePayment: "11.06.2022", isPayment: true),
-                                   Payment(contracter: "KPL", amount: "220", datePayment: "22.07.2022", isPayment: true)]
+        let payments: [Payment] = [Payment(contracter: "NL", amount: 200.3, balanceAfterPayment: 20000, datePayment: "11.06.2022", isPayment: true, description: "Payment for mobile service"),
+                                   Payment(contracter: "KPL", amount: 300.4, balanceAfterPayment: 20000, datePayment: "22.07.2022", isPayment: true, description: "")]
         let user: User = User(userID: 1, totalAmount: 20000, payments: payments)
         let storage = Storage()
         storage.mock(user)

@@ -10,11 +10,13 @@ import Combine
 
 enum Input {
     case loadData
+    case loadPayments
 }
 
 enum Output {
-    case diLoadWithFailure(error: Error)
+    case didLoadWithFailure(error: Error)
     case didLoadUserWithSiccess(users: User)
+    case didLoadPaymentWithSiccess(users: [Payment])
     case isLoading(Bool)
 }
 
@@ -35,6 +37,8 @@ class MainViewModel {
             switch input {
             case .loadData:
                 self?.getUser()
+            case.loadPayments:
+                self?.getPayments()
             }
         }.store(in: &cancellables)
         
@@ -47,7 +51,7 @@ class MainViewModel {
             .sink { [weak self] response in
                 switch response {
                 case .failure(let error):
-                    self?.output.send(.diLoadWithFailure(error: error))
+                    self?.output.send(.didLoadWithFailure(error: error))
                 case .finished:
                     self?.output.send(.isLoading(false))
                 }
@@ -57,21 +61,21 @@ class MainViewModel {
             }.store(in: &cancellables)
     }
     
-//    func getPayments() {
-//        output.send(.isLoading(true))
-//        apiService.fetchAllPayments()
-//            .sink { [weak self] response in
-//                switch response {
-//                case .failure(let error):
-//                    self?.output.send(.diLoadWithFailure(error: error))
-//                case .finished:
-//                    self?.output.send(.isLoading(false))
-//                }
-//            } receiveValue: { [weak self] payments in
-//                self?.output.send(.didLoadPaymentWithSiccess(users: payments))
-//               
-//            }.store(in: &cancellables)
-//    }
+    func getPayments() {
+        output.send(.isLoading(true))
+        apiService.fetchAllPayments()
+            .sink { [weak self] response in
+                switch response {
+                case .failure(let error):
+                    self?.output.send(.didLoadWithFailure(error: error))
+                case .finished:
+                    self?.output.send(.isLoading(false))
+                }
+            } receiveValue: { [weak self] payments in
+                self?.output.send(.didLoadPaymentWithSiccess(users: payments))
+               
+            }.store(in: &cancellables)
+    }
     
 }
 

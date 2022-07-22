@@ -10,14 +10,16 @@ import Foundation
 struct User: Decodable, Encodable {
     
     var userID: Int
-    var totalAmount: Int
+    var totalAmount: Double
     var payments: [Payment]
     
 }
 
 struct Payment: Decodable, Encodable {
     var contracter: String
-    var amount: String
+    var amount: Double
+    var balanceAfterPayment: Double
     var datePayment: String
     var isPayment: Bool
+    var description: String
 }

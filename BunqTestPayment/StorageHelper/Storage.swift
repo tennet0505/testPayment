@@ -16,29 +16,26 @@ class Storage {
     
     func mock(_ user: User) {
         
-        let encoder = JSONEncoder()
-        if let encoded = try? encoder.encode(user) {
-            let defaults = UserDefaults.standard
-            defaults.set(encoded, forKey: "User")
-        }
-        
-        if getPayments().isEmpty {
             let encoder = JSONEncoder()
+            if let encoded = try? encoder.encode(user) {
+                let defaults = UserDefaults.standard
+                defaults.set(encoded, forKey: "User")
+            }
+            
             if let encoded = try? encoder.encode(user.payments) {
                 let defaults = UserDefaults.standard
                 defaults.set(encoded, forKey: "SavePayments")
-            }
         }
     }
     
     func save(_ payment: Payment) {
         var payments = getPayments()
         payments.append(payment)
-        
-        let encoder = JSONEncoder()
-        if let encoded = try? encoder.encode(payments) {
-            let defaults = UserDefaults.standard
-            defaults.set(encoded, forKey: "SavePayments")
+        if var user = getUser() {
+            let amountAfterPayment = user.totalAmount - payment.amount
+            user.totalAmount = amountAfterPayment
+            user.payments = payments
+            mock(user)
         }
     }
     

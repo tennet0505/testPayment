@@ -24,7 +24,6 @@ class ViewController: UIViewController {
     var cancellables = Set<AnyCancellable>()
     let input: PassthroughSubject<Input, Never> = .init()
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
                
@@ -38,17 +37,20 @@ class ViewController: UIViewController {
         output
             .sink { [weak self] output in
                 switch output {
-                case .diLoadWithFailure(let error):
+                case .didLoadWithFailure(let error):
                     print(error)
                     
                 case .didLoadUserWithSiccess(let user):
                     self?.totalAmountLabel.text = "\(user.totalAmount) EUR"
-                    self?.payments = user.payments
+                    self?.payments = user.payments.reversed()
                     self?.tableView.reloadData()
                     
                 case .isLoading(let isLoading):
                     self?.makePaymentButton.isEnabled = !isLoading
                     isLoading ? self?.activityIndacator.startAnimating() : self?.activityIndacator.stopAnimating()
+                case .didLoadPaymentWithSiccess(users: let payments):
+                    self?.payments = payments.reversed()
+                    self?.tableView.reloadData()
                 }
             }.store(in: &cancellables)
     }
@@ -56,8 +58,13 @@ class ViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        totalAmountLabel.text = "\(totalAmount) EUR"
         input.send(.loadData)
+        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
         
     }
 
@@ -85,6 +92,16 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
         cell.textLabel?.text = "\(payment.amount)"
         return cell
         
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        print(payments[indexPath.row])
+        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let vc = storyBoard.instantiateViewController(withIdentifier: "DetailViewController") as! DetailViewController
+        vc.modalPresentationStyle = .formSheet
+        vc.payment = payments[indexPath.row]
+        self.present(vc, animated: true)
     }
 }
 

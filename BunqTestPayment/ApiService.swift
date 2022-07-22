@@ -12,7 +12,7 @@ protocol ServiceProtocol {
     func fetchAllPayments() -> AnyPublisher<[Payment], Error>
     func getUser() -> AnyPublisher<User, Error>
     func fetchTotalAmount()
-    func postNew(payment: Payment)
+    func postNew(_ payment: Payment) -> AnyPublisher<[Payment], Error>
    
 }
 
@@ -42,9 +42,15 @@ class ApiService: ServiceProtocol {
         
     }
     
-    func postNew(payment: Payment) {
+    func postNew(_ payment: Payment) -> AnyPublisher<[Payment], Error> {
         
         storage.save(payment)
+        
+        let payments = self.storage.getPayments()
+        return  Just(payments)
+            .delay(for: 1, scheduler: RunLoop.main)
+            .setFailureType(to: Error.self)
+            .eraseToAnyPublisher()
     }
 }
 
