@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		06666A05288B4538000D7461 /* HistoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06666A04288B4538000D7461 /* HistoryTableViewCell.swift */; };
 		06BB02A7288AA94B00C61D4B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06BB02A6288AA94B00C61D4B /* AppDelegate.swift */; };
 		06BB02A9288AA94B00C61D4B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06BB02A8288AA94B00C61D4B /* SceneDelegate.swift */; };
 		06BB02AB288AA94B00C61D4B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06BB02AA288AA94B00C61D4B /* ViewController.swift */; };
@@ -16,7 +17,6 @@
 		06BB02BE288AA94D00C61D4B /* BunqTestPaymentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06BB02BD288AA94D00C61D4B /* BunqTestPaymentTests.swift */; };
 		06BB02C8288AA94D00C61D4B /* BunqTestPaymentUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06BB02C7288AA94D00C61D4B /* BunqTestPaymentUITests.swift */; };
 		06BB02CA288AA94D00C61D4B /* BunqTestPaymentUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06BB02C9288AA94D00C61D4B /* BunqTestPaymentUITestsLaunchTests.swift */; };
-		06BB02D7288AAD8E00C61D4B /* CardsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06BB02D6288AAD8E00C61D4B /* CardsCollectionViewCell.swift */; };
 		06BB02DC288AEF9F00C61D4B /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06BB02DB288AEF9F00C61D4B /* Models.swift */; };
 		06BB02DE288AF01200C61D4B /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06BB02DD288AF01200C61D4B /* MainViewModel.swift */; };
 		06BB02E1288AF04700C61D4B /* ApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06BB02E0288AF04700C61D4B /* ApiService.swift */; };
@@ -48,6 +48,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		06666A04288B4538000D7461 /* HistoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryTableViewCell.swift; sourceTree = "<group>"; };
 		06BB02A3288AA94B00C61D4B /* BunqTestPayment.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BunqTestPayment.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		06BB02A6288AA94B00C61D4B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		06BB02A8288AA94B00C61D4B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -61,7 +62,6 @@
 		06BB02C3288AA94D00C61D4B /* BunqTestPaymentUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BunqTestPaymentUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		06BB02C7288AA94D00C61D4B /* BunqTestPaymentUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BunqTestPaymentUITests.swift; sourceTree = "<group>"; };
 		06BB02C9288AA94D00C61D4B /* BunqTestPaymentUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BunqTestPaymentUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		06BB02D6288AAD8E00C61D4B /* CardsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardsCollectionViewCell.swift; sourceTree = "<group>"; };
 		06BB02DB288AEF9F00C61D4B /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
 		06BB02DD288AF01200C61D4B /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
 		06BB02E0288AF04700C61D4B /* ApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiService.swift; sourceTree = "<group>"; };
@@ -147,7 +147,6 @@
 				06BB02AF288AA94D00C61D4B /* Assets.xcassets */,
 				06BB02B1288AA94D00C61D4B /* LaunchScreen.storyboard */,
 				06BB02B4288AA94D00C61D4B /* Info.plist */,
-				06BB02D6288AAD8E00C61D4B /* CardsCollectionViewCell.swift */,
 			);
 			path = BunqTestPayment;
 			sourceTree = "<group>";
@@ -175,6 +174,7 @@
 				06BB02AA288AA94B00C61D4B /* ViewController.swift */,
 				06BB02E5288B0D4900C61D4B /* PaymentViewController.swift */,
 				06BB02ED288B241500C61D4B /* DetailViewController.swift */,
+				06666A04288B4538000D7461 /* HistoryTableViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -489,13 +489,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				06BB02D7288AAD8E00C61D4B /* CardsCollectionViewCell.swift in Sources */,
 				06BB02E9288B0F0000C61D4B /* PaymentViewModel.swift in Sources */,
 				06BB02AB288AA94B00C61D4B /* ViewController.swift in Sources */,
 				06BB02EE288B241500C61D4B /* DetailViewController.swift in Sources */,
 				06BB02A7288AA94B00C61D4B /* AppDelegate.swift in Sources */,
 				06BB02EC288B1D8000C61D4B /* Helpers+Extentions.swift in Sources */,
 				06BB02A9288AA94B00C61D4B /* SceneDelegate.swift in Sources */,
+				06666A05288B4538000D7461 /* HistoryTableViewCell.swift in Sources */,
 				06BB02DC288AEF9F00C61D4B /* Models.swift in Sources */,
 				06BB02E4288AF09D00C61D4B /* Storage.swift in Sources */,
 				06BB02E1288AF04700C61D4B /* ApiService.swift in Sources */,

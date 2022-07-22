@@ -61,12 +61,6 @@ class ViewController: UIViewController {
         input.send(.loadData)
         
     }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
-        
-    }
 
     @IBAction func buttonTapAction(_ sender: Any) {
         
@@ -75,21 +69,18 @@ class ViewController: UIViewController {
 
 }
 
-
-
-
-
-
-
 extension ViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return payments.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! HistoryTableViewCell
         let payment = payments[indexPath.row]
-        cell.textLabel?.text = "\(payment.amount)"
+        cell.nameLabel.text = payment.contractor.contratorID.name
+        cell.amountLabel.text = "EUR \(payment.amount)"
+        cell.dateLabel.text = payment.datePayment.formatted(date: .abbreviated, time: .shortened)
+        cell.contractorImageView.image = UIImage(named: payment.contractor.contratorID.logo)
         return cell
         
     }

@@ -28,6 +28,15 @@ class Storage {
         }
     }
     
+    func mock(_ contractors: [Contrator]) {
+        
+        let encoder = JSONEncoder()
+        if let encoded = try? encoder.encode(contractors) {
+            let defaults = UserDefaults.standard
+            defaults.set(encoded, forKey: "Contrator")
+        }
+    }
+    
     func save(_ payment: Payment) {
         var payments = getPayments()
         payments.append(payment)
@@ -45,6 +54,14 @@ class Storage {
             return []
         }
         return payments
+    }
+    
+    func getContractors() -> [Contrator]{
+        guard let allContrators = storage.object(forKey: "Contrator") as? Data,
+                let contractors = try? JSONDecoder().decode([Contrator].self, from: allContrators) else {
+            return []
+        }
+        return contractors
     }
     
     func getUser() -> User? {

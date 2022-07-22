@@ -7,7 +7,7 @@ target 'BunqTestPayment' do
 
   # Pods for BunqTestPayment
   pod 'IQKeyboardManagerSwift'
-  pod 'DropDown'
+  pod 'iOSDropDown'
 
   target 'BunqTestPaymentTests' do
     inherit! :search_paths

@@ -11,7 +11,7 @@ import Combine
 protocol ServiceProtocol {
     func fetchAllPayments() -> AnyPublisher<[Payment], Error>
     func getUser() -> AnyPublisher<User, Error>
-    func fetchTotalAmount()
+    func getContractorsList() -> AnyPublisher<[Contrator], Error>
     func postNew(_ payment: Payment) -> AnyPublisher<[Payment], Error>
    
 }
@@ -38,8 +38,12 @@ class ApiService: ServiceProtocol {
             .eraseToAnyPublisher()
     }
     
-    func fetchTotalAmount() {
-        
+    func getContractorsList() -> AnyPublisher<[Contrator], Error> {
+        let contrators = self.storage.getContractors()
+        return  Just(contrators)
+            .delay(for: 1, scheduler: RunLoop.main)
+            .setFailureType(to: Error.self)
+            .eraseToAnyPublisher()
     }
     
     func postNew(_ payment: Payment) -> AnyPublisher<[Payment], Error> {

@@ -12,13 +12,15 @@ import Combine
 enum InputPaymentViewModel {
     case didNew(_ payment: Payment)
     case amountNotCorrect
+    case getContractorsList
 }
 
 enum OutputPaymentViewModel {
     case didLoadWithFailure(error: Error)
-    case didLoadWithSiccess
+    case didLoadWithSuccess
     case isLoading(Bool)
     case showAlert
+    case didLoadWithSuccessListOf(contracters: [Contrator])
 }
 
 class PaymentViewModel {
@@ -40,10 +42,28 @@ class PaymentViewModel {
                 self?.postNew(payment)
             case .amountNotCorrect:
                 self?.outputPaymentViewModel.send(.showAlert)
+            case .getContractorsList:
+                self?.getContractors()
             }
         }.store(in: &cancellables)
         
         return outputPaymentViewModel.eraseToAnyPublisher()
+    }
+    
+    func getContractors() {
+        outputPaymentViewModel.send(.isLoading(true))
+        apiService.getContractorsList()
+            .sink { [weak self] response in
+                switch response {
+                case .failure(let error):
+                    self?.outputPaymentViewModel.send(.didLoadWithFailure(error: error))
+                case .finished:
+                    self?.outputPaymentViewModel.send(.isLoading(false))
+                }
+            } receiveValue: { [weak self] contracters in
+                self?.outputPaymentViewModel.send(.didLoadWithSuccessListOf(contracters: contracters))
+               
+            }.store(in: &cancellables)
     }
     
     func postNew(_ payment: Payment) {
@@ -57,7 +77,7 @@ class PaymentViewModel {
                     self?.outputPaymentViewModel.send(.isLoading(false))
                 }
             } receiveValue: { [weak self] user in
-                self?.outputPaymentViewModel.send(.didLoadWithSiccess)
+                self?.outputPaymentViewModel.send(.didLoadWithSuccess)
                
             }.store(in: &cancellables)
     }

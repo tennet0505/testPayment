@@ -9,6 +9,7 @@ import UIKit
 
 class DetailViewController: UIViewController {
 
+    @IBOutlet weak var logoImage: UIImageView!
     @IBOutlet weak var amountLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var contractorNameLabel: UILabel!
@@ -24,9 +25,10 @@ class DetailViewController: UIViewController {
     }
 
     func setup() {
+        logoImage.image = UIImage(named: payment.contractor.contratorID.logo)
         amountLabel.text = "EUR \(payment.amount)"
-        dateLabel.text = payment.datePayment
-        contractorNameLabel.text = payment.contracter
+        dateLabel.text = payment.datePayment.formatted(date: .complete, time: .shortened)
+        contractorNameLabel.text = payment.contractor.contratorID.name
         descriptionLabel.text = payment.description.isEmpty ? "no description" : payment.description
         balanceAfterPaymentLabel.text = "EUR \(payment.balanceAfterPayment)"
     }
