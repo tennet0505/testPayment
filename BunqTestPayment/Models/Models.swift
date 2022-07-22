@@ -8,11 +8,9 @@
 import Foundation
 
 struct User: Decodable, Encodable {
-    
     var userID: Int
     var totalAmount: Double
     var payments: [Payment]
-    
 }
 
 struct Payment: Decodable, Encodable {
@@ -29,7 +27,6 @@ struct Contrator: Decodable, Encodable {
 }
 
 enum ContractorId: String, Encodable, Decodable {
-   
     case MobileOperator
     case GasUtilities
     case ElectroBlueEnergy

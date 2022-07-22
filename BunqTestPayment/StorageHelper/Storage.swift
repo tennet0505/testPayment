@@ -11,7 +11,6 @@ import Foundation
 class Storage {
     
     weak var shared: Storage?
-    
     var storage = UserDefaults()    
     
     func mock(_ user: User) {

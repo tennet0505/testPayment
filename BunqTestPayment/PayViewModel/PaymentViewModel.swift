@@ -35,7 +35,6 @@ class PaymentViewModel {
     }
     
     func transform(input: AnyPublisher<InputPaymentViewModel, Never>) -> AnyPublisher<OutputPaymentViewModel, Never> {
-      
         input.sink { [weak self] input in
             switch input {
             case .didNew(let payment):
@@ -46,7 +45,6 @@ class PaymentViewModel {
                 self?.getContractors()
             }
         }.store(in: &cancellables)
-        
         return outputPaymentViewModel.eraseToAnyPublisher()
     }
     

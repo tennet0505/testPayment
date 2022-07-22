@@ -9,13 +9,13 @@ import Foundation
 import Combine
 
 enum Input {
-    case loadData
+    case loadData(withActivityIndicator: Bool)
     case loadPayments
 }
 
 enum Output {
     case didLoadWithFailure(error: Error)
-    case didLoadUserWithSiccess(users: User)
+    case didLoadUserWithSuccess(users: User)
     case didLoadPaymentWithSiccess(users: [Payment])
     case isLoading(Bool)
 }
@@ -35,8 +35,8 @@ class MainViewModel {
       
         input.sink { [weak self]input in
             switch input {
-            case .loadData:
-                self?.getUser()
+            case .loadData(let withActivityIndicator):
+                self?.getUser(withActivityIndicator)
             case.loadPayments:
                 self?.getPayments()
             }
@@ -45,19 +45,19 @@ class MainViewModel {
         return output.eraseToAnyPublisher()
     }
     
-    func getUser() {
-        output.send(.isLoading(true))
+    func getUser(_ withActivityIndicator: Bool) {
+        output.send(.isLoading(withActivityIndicator))
         apiService.getUser()
             .sink { [weak self] response in
                 switch response {
                 case .failure(let error):
+                    self?.output.send(.isLoading(false))
                     self?.output.send(.didLoadWithFailure(error: error))
                 case .finished:
                     self?.output.send(.isLoading(false))
                 }
             } receiveValue: { [weak self] user in
-                self?.output.send(.didLoadUserWithSiccess(users: user))
-               
+                self?.output.send(.didLoadUserWithSuccess(users: user))
             }.store(in: &cancellables)
     }
     
@@ -68,6 +68,7 @@ class MainViewModel {
                 switch response {
                 case .failure(let error):
                     self?.output.send(.didLoadWithFailure(error: error))
+                    self?.output.send(.isLoading(false))
                 case .finished:
                     self?.output.send(.isLoading(false))
                 }

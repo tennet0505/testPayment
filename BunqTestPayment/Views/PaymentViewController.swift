@@ -26,22 +26,18 @@ class PaymentViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-       
         navigationItem.title = "Payment"
         bind()
         input.send(.getContractorsList)
-       
     }
     
     func bind() {
-
         let output = viewModel.transform(input: input.eraseToAnyPublisher())
         output
             .sink { [weak self] output in
                 switch output {
                 case .didLoadWithFailure(let error):
-                    print(error)
-                    
+                    self?.showAlertWith(message: error.localizedDescription)
                 case .didLoadWithSuccess:
                     self?.navigationController?.popViewController(animated: true)
                 case .isLoading(let isLoading):

@@ -26,30 +26,44 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-               
+        setupTableView()
         bind()
-        
+    }
+    
+    func setupTableView() {
+        tableView.refreshControl = UIRefreshControl()
+        tableView.refreshControl?.addTarget(self, action: #selector(callPullToRefresh), for: .valueChanged)
+    }
+    
+    @objc func callPullToRefresh(){
+        input.send(.loadData(withActivityIndicator: false))
     }
     
     func bind() {
-        
         let output = viewModel.transform(input: input.eraseToAnyPublisher())
         output
             .sink { [weak self] output in
                 switch output {
                 case .didLoadWithFailure(let error):
-                    print(error)
-                    
-                case .didLoadUserWithSiccess(let user):
+                    if let alert = self?.alertWithReloadBurron(message: error.localizedDescription, complition: {
+                        self?.input.send(.loadData(withActivityIndicator: true))
+                    }) {
+                        self?.present(alert, animated: true, completion: {
+                            self?.tableView.refreshControl?.endRefreshing()
+                        })
+                    }
+                        self?.tableView.reloadData()
+                case .didLoadUserWithSuccess(let user):
                     self?.totalAmountLabel.text = "\(user.totalAmount) EUR"
                     self?.payments = user.payments.reversed()
+                    self?.tableView.refreshControl?.endRefreshing()
                     self?.tableView.reloadData()
-                    
                 case .isLoading(let isLoading):
                     self?.makePaymentButton.isEnabled = !isLoading
                     isLoading ? self?.activityIndacator.startAnimating() : self?.activityIndacator.stopAnimating()
                 case .didLoadPaymentWithSiccess(users: let payments):
                     self?.payments = payments.reversed()
+                    self?.tableView.refreshControl?.endRefreshing()
                     self?.tableView.reloadData()
                 }
             }.store(in: &cancellables)
@@ -57,13 +71,10 @@ class ViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-        input.send(.loadData)
-        
+        input.send(.loadData(withActivityIndicator: true))
     }
 
     @IBAction func buttonTapAction(_ sender: Any) {
-        
         performSegue(withIdentifier: "segueToPayment", sender: self)
     }
 
@@ -86,8 +97,6 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-        print(payments[indexPath.row])
         let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let vc = storyBoard.instantiateViewController(withIdentifier: "DetailViewController") as! DetailViewController
         vc.modalPresentationStyle = .formSheet

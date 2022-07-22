@@ -32,10 +32,16 @@ class ApiService: ServiceProtocol {
         guard let user = self.storage.getUser() else {
             return Fail(error: ApiError.noData).eraseToAnyPublisher()
         }
+        let randomInt = Int.random(in: 1...5)
+        print(randomInt)
+        if randomInt == 4 {
+            return Fail(error: ApiError.noData).eraseToAnyPublisher()
+        } else {
         return  Just(user)
             .delay(for: 1, scheduler: RunLoop.main)
             .setFailureType(to: Error.self)
             .eraseToAnyPublisher()
+        }
     }
     
     func getContractorsList() -> AnyPublisher<[Contrator], Error> {
