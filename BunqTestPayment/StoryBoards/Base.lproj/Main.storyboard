@@ -171,6 +171,7 @@
                     <navigationItem key="navigationItem" id="80t-tO-S01"/>
                     <connections>
                         <outlet property="activityIndacator" destination="XnF-dh-KFc" id="pIb-6H-osa"/>
+                        <outlet property="gradientView" destination="Rd7-rQ-POE" id="fTo-cW-wYO"/>
                         <outlet property="makePaymentButton" destination="xig-9c-zJM" id="t4h-m2-pER"/>
                         <outlet property="tableView" destination="4Lr-VF-aRW" id="g4Z-a4-jKJ"/>
                         <outlet property="totalAmountLabel" destination="g2H-MR-jcv" id="Z1B-PU-rEn"/>

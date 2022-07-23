@@ -14,6 +14,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var makePaymentButton: UIButton!
     @IBOutlet weak var totalAmountLabel: UILabel!
     @IBOutlet weak var activityIndacator: UIActivityIndicatorView!
+    @IBOutlet weak var gradientView: UIView!
     
     var totalAmount = 0
     
@@ -31,6 +32,7 @@ class ViewController: UIViewController {
     }
     
     func setupTableView() {
+        gradientView.gradienAlpha()
         tableView.refreshControl = UIRefreshControl()
         tableView.refreshControl?.addTarget(self, action: #selector(callPullToRefresh), for: .valueChanged)
     }

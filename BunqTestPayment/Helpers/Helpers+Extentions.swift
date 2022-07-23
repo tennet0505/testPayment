@@ -27,3 +27,17 @@ extension UIViewController {
         return alert
     }
 }
+
+extension UIView {
+    /// set gradien alpha
+    func gradienAlpha(){
+        let gradient = CAGradientLayer()
+        gradient.startPoint = CGPoint(x: 0.0, y: 0.5)
+        gradient.endPoint = CGPoint(x: 1.0, y: 0.5)
+        let whiteColor = UIColor.white
+        gradient.colors = [whiteColor.withAlphaComponent(0.6).cgColor, whiteColor.withAlphaComponent(0.9).cgColor]
+        gradient.locations = [ 0.0, 1.0]
+        gradient.frame = self.bounds
+        self.layer.mask = gradient
+    }
+}
