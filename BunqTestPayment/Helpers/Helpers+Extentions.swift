@@ -29,7 +29,7 @@ extension UIViewController {
 }
 
 extension UIView {
-    /// set gradien alpha
+
     func gradienAlpha(){
         let gradient = CAGradientLayer()
         gradient.startPoint = CGPoint(x: 0.0, y: 0.5)
@@ -58,7 +58,6 @@ extension Array {
 
 extension Double {
 
-    /// Formats the receiver as a currency string using the specified three digit currencyCode. Currency codes are based on the ISO 4217 standard.
     func formatAsCurrency(_ currencyCode: String) -> String? {
         let currencyFormatter = NumberFormatter()
         currencyFormatter.numberStyle = NumberFormatter.Style.currency

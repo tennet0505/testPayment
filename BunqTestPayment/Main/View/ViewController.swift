@@ -28,11 +28,14 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupTableView()
+        setupViews()
         bind()
     }
     
-    func setupTableView() {
+    func setupViews() {
+        let imageView = UIImageView(image:UIImage(named: "logo.png"))
+        imageView.contentMode = .scaleAspectFit
+        self.navigationItem.titleView = imageView
         gradientView.gradienAlpha()
         tableView.refreshControl = UIRefreshControl()
         tableView.refreshControl?.addTarget(self, action: #selector(callPullToRefresh), for: .valueChanged)
@@ -91,6 +94,7 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! HistoryTableViewCell
         let payment = payments[indexPath.row]
+        cell.payment = payment
         cell.nameLabel.text = payment.contractor.contratorID.name
         cell.amountLabel.text = payment.amount.formatAsCurrency("EUR")
         cell.dateLabel.text = payment.datePayment.formatted(date: .abbreviated, time: .shortened)
