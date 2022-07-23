@@ -45,7 +45,7 @@ class ViewController: UIViewController {
             .sink { [weak self] output in
                 switch output {
                 case .didLoadWithFailure(let error):
-                    if let alert = self?.alertWithReloadBurron(message: error.localizedDescription, complition: {
+                    if let alert = self?.alertWithReloadBurron(title: "Error", message: error.localizedDescription, complition: {
                         self?.input.send(.loadData(withActivityIndicator: true))
                     }) {
                         self?.present(alert, animated: true, completion: {

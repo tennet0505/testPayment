@@ -32,9 +32,9 @@ class ApiService: ServiceProtocol {
         guard let user = self.storage.getUser() else {
             return Fail(error: ApiError.noData).eraseToAnyPublisher()
         }
-        let randomInt = Int.random(in: 1...5)
+        let randomInt = Int.random(in: 1...4)
         print(randomInt)
-        if randomInt == 4 {
+        if randomInt == 3 {
             return Fail(error: ApiError.noData).eraseToAnyPublisher()
         } else {
         return  Just(user)

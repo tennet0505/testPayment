@@ -109,6 +109,49 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		06666A06288B71B0000D7461 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				06BB02E5288B0D4900C61D4B /* PaymentViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		06666A07288B71BC000D7461 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				06BB02E8288B0F0000C61D4B /* PaymentViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		06666A08288B71CB000D7461 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				06BB02AA288AA94B00C61D4B /* ViewController.swift */,
+				06666A04288B4538000D7461 /* HistoryTableViewCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		06666A09288B71D7000D7461 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				06BB02DD288AF01200C61D4B /* MainViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		06666A0A288B71F1000D7461 /* StoryBoards */ = {
+			isa = PBXGroup;
+			children = (
+				06BB02AF288AA94D00C61D4B /* Assets.xcassets */,
+				06BB02AC288AA94B00C61D4B /* Main.storyboard */,
+				06BB02B1288AA94D00C61D4B /* LaunchScreen.storyboard */,
+			);
+			path = StoryBoards;
+			sourceTree = "<group>";
+		};
 		06BB029A288AA94B00C61D4B = {
 			isa = PBXGroup;
 			children = (
@@ -138,14 +181,12 @@
 				06BB02E2288AF08200C61D4B /* StorageHelper */,
 				06BB02DF288AF02900C61D4B /* ApiService */,
 				06BB02DA288AEF2100C61D4B /* Models */,
-				06BB02D9288AEF1200C61D4B /* MainViewModel */,
-				06BB02E7288B0EE900C61D4B /* PayViewModel */,
-				06BB02D8288AEF0700C61D4B /* Views */,
+				06BB02D9288AEF1200C61D4B /* Main */,
+				06BB02E7288B0EE900C61D4B /* Payment */,
+				06BB02D8288AEF0700C61D4B /* Detail */,
 				06BB02A6288AA94B00C61D4B /* AppDelegate.swift */,
 				06BB02A8288AA94B00C61D4B /* SceneDelegate.swift */,
-				06BB02AC288AA94B00C61D4B /* Main.storyboard */,
-				06BB02AF288AA94D00C61D4B /* Assets.xcassets */,
-				06BB02B1288AA94D00C61D4B /* LaunchScreen.storyboard */,
+				06666A0A288B71F1000D7461 /* StoryBoards */,
 				06BB02B4288AA94D00C61D4B /* Info.plist */,
 			);
 			path = BunqTestPayment;
@@ -168,23 +209,21 @@
 			path = BunqTestPaymentUITests;
 			sourceTree = "<group>";
 		};
-		06BB02D8288AEF0700C61D4B /* Views */ = {
+		06BB02D8288AEF0700C61D4B /* Detail */ = {
 			isa = PBXGroup;
 			children = (
-				06BB02AA288AA94B00C61D4B /* ViewController.swift */,
-				06BB02E5288B0D4900C61D4B /* PaymentViewController.swift */,
 				06BB02ED288B241500C61D4B /* DetailViewController.swift */,
-				06666A04288B4538000D7461 /* HistoryTableViewCell.swift */,
 			);
-			path = Views;
+			path = Detail;
 			sourceTree = "<group>";
 		};
-		06BB02D9288AEF1200C61D4B /* MainViewModel */ = {
+		06BB02D9288AEF1200C61D4B /* Main */ = {
 			isa = PBXGroup;
 			children = (
-				06BB02DD288AF01200C61D4B /* MainViewModel.swift */,
+				06666A09288B71D7000D7461 /* ViewModel */,
+				06666A08288B71CB000D7461 /* View */,
 			);
-			path = MainViewModel;
+			path = Main;
 			sourceTree = "<group>";
 		};
 		06BB02DA288AEF2100C61D4B /* Models */ = {
@@ -211,12 +250,13 @@
 			path = StorageHelper;
 			sourceTree = "<group>";
 		};
-		06BB02E7288B0EE900C61D4B /* PayViewModel */ = {
+		06BB02E7288B0EE900C61D4B /* Payment */ = {
 			isa = PBXGroup;
 			children = (
-				06BB02E8288B0F0000C61D4B /* PaymentViewModel.swift */,
+				06666A07288B71BC000D7461 /* ViewModel */,
+				06666A06288B71B0000D7461 /* View */,
 			);
-			path = PayViewModel;
+			path = Payment;
 			sourceTree = "<group>";
 		};
 		06BB02EA288B1D6E00C61D4B /* Helpers */ = {

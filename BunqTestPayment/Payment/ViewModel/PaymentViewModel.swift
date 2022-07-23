@@ -12,6 +12,7 @@ import Combine
 enum InputPaymentViewModel {
     case didNew(_ payment: Payment)
     case amountNotCorrect
+    case fullAllField
     case getContractorsList
 }
 
@@ -20,6 +21,7 @@ enum OutputPaymentViewModel {
     case didLoadWithSuccess
     case isLoading(Bool)
     case showAlert
+    case showAlertFullField
     case didLoadWithSuccessListOf(contracters: [Contrator])
 }
 
@@ -43,6 +45,8 @@ class PaymentViewModel {
                 self?.outputPaymentViewModel.send(.showAlert)
             case .getContractorsList:
                 self?.getContractors()
+            case .fullAllField:
+                self?.outputPaymentViewModel.send(.showAlertFullField)
             }
         }.store(in: &cancellables)
         return outputPaymentViewModel.eraseToAnyPublisher()

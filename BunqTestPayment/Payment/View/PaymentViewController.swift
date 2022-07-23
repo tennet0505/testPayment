@@ -45,12 +45,14 @@ class PaymentViewController: UIViewController {
                     self?.view.isUserInteractionEnabled = !isLoading
                     isLoading ? self?.activityIndicator.startAnimating() : self?.activityIndicator.stopAnimating()
                 case .showAlert:
-                    self?.showAlertWith(message: "Not enough money in the account")
+                    self?.showAlertWith(title: "Attention!", message: "Not enough money")
                     self?.amountTextField.becomeFirstResponder()
                 case .didLoadWithSuccessListOf(let contracters):
                     let arrayOfContractors = contracters.map{ $0.contratorID.name }
                     self?.contractorTextField.optionArray = arrayOfContractors
                     self?.contractorTextField.optionIds = [01, 02, 03, 04]
+                case .showAlertFullField:
+                    self?.showAlertWith(title: "Warning!", message: "Please enter a contractor's name")
                 }
             }.store(in: &cancellables)
         
@@ -73,7 +75,7 @@ class PaymentViewController: UIViewController {
 
     @IBAction func payButton(_ sender: Any) {
         guard let amount = Double(amountTextField.text ?? ""), let totalAmount = storage.getUser()?.totalAmount else { return }
-        if amount < totalAmount  {
+        if amount < totalAmount && !contractorName.isEmpty {
             let newPayment = Payment(contractor: Contrator(contratorID: contractorLogo),
                                      amount: amount,
                                      balanceAfterPayment: (totalAmount - amount),
@@ -82,7 +84,7 @@ class PaymentViewController: UIViewController {
                                      description: descriptionLabel.text ?? "")
             input.send(.didNew(newPayment))
         } else {
-            input.send(.amountNotCorrect)
+            amount < totalAmount ? input.send(.fullAllField) : input.send(.amountNotCorrect)
         }
     }
 }
