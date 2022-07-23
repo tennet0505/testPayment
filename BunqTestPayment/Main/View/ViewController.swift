@@ -57,7 +57,7 @@ class ViewController: UIViewController {
                     }
                         self?.tableView.reloadData()
                 case .didLoadUserWithSuccess(let user):
-                    self?.totalAmountLabel.text = "\(user.totalAmount) EUR"
+                    self?.totalAmountLabel.text = user.totalAmount.formatAsCurrency("EUR")
                     self?.payments = user.payments.reversed()
                     self?.tableView.refreshControl?.endRefreshing()
                     self?.tableView.reloadData()
@@ -92,7 +92,7 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! HistoryTableViewCell
         let payment = payments[indexPath.row]
         cell.nameLabel.text = payment.contractor.contratorID.name
-        cell.amountLabel.text = "EUR \(payment.amount)"
+        cell.amountLabel.text = payment.amount.formatAsCurrency("EUR")
         cell.dateLabel.text = payment.datePayment.formatted(date: .abbreviated, time: .shortened)
         cell.contractorImageView.image = UIImage(named: payment.contractor.contratorID.logo)
         cell.changeColorOfStatusLabel(payment.status)

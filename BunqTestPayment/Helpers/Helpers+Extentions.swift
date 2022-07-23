@@ -55,3 +55,15 @@ extension Array {
         self[index] = element
     }
 }
+
+extension Double {
+
+    /// Formats the receiver as a currency string using the specified three digit currencyCode. Currency codes are based on the ISO 4217 standard.
+    func formatAsCurrency(_ currencyCode: String) -> String? {
+        let currencyFormatter = NumberFormatter()
+        currencyFormatter.numberStyle = NumberFormatter.Style.currency
+        currencyFormatter.currencyCode = currencyCode
+        currencyFormatter.maximumFractionDigits = floor(self) == self ? 0 : 2
+        return currencyFormatter.string(from: self as NSNumber)
+    }
+}
