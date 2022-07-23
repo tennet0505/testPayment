@@ -15,6 +15,7 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var contractorNameLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var balanceAfterPaymentLabel: UILabel!
+    @IBOutlet weak var statusLabel: UILabel!
     
     var payment: Payment!
 
@@ -30,5 +31,7 @@ class DetailViewController: UIViewController {
         contractorNameLabel.text = payment.contractor.contratorID.name
         descriptionLabel.text = payment.description.isEmpty ? "no description" : payment.description
         balanceAfterPaymentLabel.text = "EUR \(payment.balanceAfterPayment)"
+        statusLabel.textColor = payment.status.color
+        statusLabel.text = payment.status.rawValue
     }
 }

@@ -24,15 +24,17 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                                            amount: 200.3,
                                            balanceAfterPayment: 20000,
                                            datePayment: Date.distantPast,
-                                           isPayment: true,
-                                           description: "Payment for mobile service"),
+                                           isPayed: true,
+                                           description: "Payment for mobile service",
+                                           status: .approved),
                                    Payment(contractor:
                                             Contrator(contratorID: .MobileOperator),
                                            amount: 300.4,
                                            balanceAfterPayment: 20000,
                                            datePayment: Date.now,
-                                           isPayment: true,
-                                           description: "")]
+                                           isPayed: true,
+                                           description: "",
+                                           status: .approved)]
         
         let contractors: [Contrator] = [Contrator(contratorID: .MobileOperator),
                                         Contrator(contratorID: .GasUtilities),

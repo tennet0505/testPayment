@@ -25,6 +25,7 @@ class ViewController: UIViewController {
     var cancellables = Set<AnyCancellable>()
     let input: PassthroughSubject<Input, Never> = .init()
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableView()
@@ -94,6 +95,7 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
         cell.amountLabel.text = "EUR \(payment.amount)"
         cell.dateLabel.text = payment.datePayment.formatted(date: .abbreviated, time: .shortened)
         cell.contractorImageView.image = UIImage(named: payment.contractor.contratorID.logo)
+        cell.changeColorOfStatusLabel(payment.status)
         return cell
         
     }

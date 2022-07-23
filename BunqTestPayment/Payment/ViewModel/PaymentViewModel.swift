@@ -75,12 +75,12 @@ class PaymentViewModel {
                 switch response {
                 case .failure(let error):
                     self?.outputPaymentViewModel.send(.didLoadWithFailure(error: error))
+                    self?.outputPaymentViewModel.send(.isLoading(false))
                 case .finished:
                     self?.outputPaymentViewModel.send(.isLoading(false))
                 }
             } receiveValue: { [weak self] user in
                 self?.outputPaymentViewModel.send(.didLoadWithSuccess)
-               
             }.store(in: &cancellables)
     }
 }

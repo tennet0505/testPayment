@@ -83,5 +83,6 @@ class MainViewModel {
 enum ApiError: Error {
     case response
     case noData
+    case serverNoAnswer
 }
 

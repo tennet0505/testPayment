@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 struct User: Decodable, Encodable {
     var userID: Int
@@ -18,12 +19,30 @@ struct Payment: Decodable, Encodable {
     var amount: Double
     var balanceAfterPayment: Double
     var datePayment: Date
-    var isPayment: Bool
+    var isPayed: Bool
     var description: String
+    var status: Status
 }
 
 struct Contrator: Decodable, Encodable {
     var contratorID: ContractorId
+}
+
+enum Status: String, Encodable, Decodable {
+    case approved
+    case pending
+    case cancelled
+    
+    var color: UIColor {
+        switch self {
+        case .approved:
+            return .systemGreen.withAlphaComponent(0.6)
+        case .pending:
+            return .orange.withAlphaComponent(0.6)
+        case .cancelled:
+            return .red.withAlphaComponent(0.6)
+        }
+    }
 }
 
 enum ContractorId: String, Encodable, Decodable {

@@ -45,6 +45,8 @@ class Storage {
             user.payments = payments
             mock(user)
         }
+        
+        changeStatusOfPaymentsAfter10Seconds()
     }
     
     func getPayments() -> [Payment]{
@@ -69,6 +71,19 @@ class Storage {
             return nil
         }
         return user
+    }
+    
+    //imitation of payment status change
+    private func changeStatusOfPaymentsAfter10Seconds() {
+        var payments = self.getPayments()
+        Timer.scheduledTimer(withTimeInterval: 5, repeats: false, block: { timer in
+            payments.modifyForEach { $1.status = .approved }
+            
+            if var user = self.getUser() {
+                user.payments = payments
+                self.mock(user)
+            }
+        })
     }
 }
 

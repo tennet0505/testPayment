@@ -70,6 +70,7 @@ class PaymentViewController: UIViewController {
             default:
                 contractorLogo = .defaultLogo
             }
+            amountTextField.becomeFirstResponder()
         }
     }
 
@@ -80,8 +81,9 @@ class PaymentViewController: UIViewController {
                                      amount: amount,
                                      balanceAfterPayment: (totalAmount - amount),
                                      datePayment: Date.now,
-                                     isPayment: true,
-                                     description: descriptionLabel.text ?? "")
+                                     isPayed: true,
+                                     description: descriptionLabel.text ?? "",
+                                     status: .pending)
             input.send(.didNew(newPayment))
         } else {
             amount < totalAmount ? input.send(.fullAllField) : input.send(.amountNotCorrect)

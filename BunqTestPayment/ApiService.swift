@@ -54,13 +54,18 @@ class ApiService: ServiceProtocol {
     
     func postNew(_ payment: Payment) -> AnyPublisher<[Payment], Error> {
         
-        storage.save(payment)
-        
-        let payments = self.storage.getPayments()
-        return  Just(payments)
-            .delay(for: 1, scheduler: RunLoop.main)
-            .setFailureType(to: Error.self)
-            .eraseToAnyPublisher()
+        let randomInt = Int.random(in: 1...3)
+        print(randomInt)
+        if randomInt == 2 {
+            return Fail(error: ApiError.serverNoAnswer).eraseToAnyPublisher()
+        } else {
+            storage.save(payment)
+            let payments = self.storage.getPayments()
+            return  Just(payments)
+                .delay(for: 1, scheduler: RunLoop.main)
+                .setFailureType(to: Error.self)
+                .eraseToAnyPublisher()
+        }
     }
 }
 
